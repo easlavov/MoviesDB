@@ -1,46 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MoviesDB.Domain.Models;
-using MoviesDB.Domain.Repositories;
-using Newtonsoft.Json;
-
-namespace MoviesDB.Domain.Services
+﻿namespace MoviesDB.Domain.Services
 {
+    using System;
+    using MoviesDB.Domain.Models;
+    using MoviesDB.Domain.Repositories;
+    using Newtonsoft.Json;
+
     public class MoviesService : IMoviesService
     {
-        private readonly IRepository<Movie, int> moviesStore;
+        private readonly IRepository<Movie, int> moviesRepository;
 
-        public MoviesService(IRepository<Movie, int> moviesStore)
+        /// <summary>
+        ///     Creates a new instance of the <see cref="MoviesService"/> class.
+        /// </summary>
+        /// <param name="moviesRepository">A movies repository.</param>
+        public MoviesService(IRepository<Movie, int> moviesRepository)
         {
-            if (moviesStore == null)
+            if (moviesRepository == null)
             {
                 throw new ArgumentNullException("moviesStore");
             }
 
-            this.moviesStore = moviesStore;
+            this.moviesRepository = moviesRepository;
         }
 
-        public void Add(Movie movie)
+        public Movie Add(Movie movie)
         {
-            this.moviesStore.Add(movie);
+            if (movie == null)
+            {
+                throw new ArgumentNullException("movie", "Movie cannot be null!");
+            }
+
+            return this.moviesRepository.Add(movie);
         }
 
-        public void Update(Movie movie)
+        public Movie Update(Movie movie)
         {
-            this.moviesStore.Update(movie);
+            return this.moviesRepository.Update(movie);
         }
 
         public Movie GetById(int id)
         {
-            return this.moviesStore.GetById(id);
+            return this.moviesRepository.GetById(id);
         }
 
         public string ExportMoviesAsJson()
         {
-            var movies = this.moviesStore.GetAll();
+            var movies = this.moviesRepository.GetAll();
             var json = JsonConvert.SerializeObject(movies);
             return json;
         }

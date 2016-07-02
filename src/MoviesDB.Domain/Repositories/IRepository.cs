@@ -5,11 +5,11 @@
 
     public interface IRepository<T, Key> where T : BaseEntity<Key>
     {
-        void Add(T entity);
+        T Add(T entity);
 
-        void Update(T entity);
+        T Update(T entity);
 
-        void Delete(T entity);
+        void Delete(Key id);
 
         T GetById(Key key);
 

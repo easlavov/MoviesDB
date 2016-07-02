@@ -4,9 +4,9 @@ namespace MoviesDB.Domain.Services
 {
     public interface IMoviesService
     {
-        void Add(Movie movie);
+        Movie Add(Movie movie);
         
-        void Update(Movie movie);
+        Movie Update(Movie movie);
 
         Movie GetById(int id);
 
