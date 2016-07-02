@@ -18,7 +18,7 @@
         {
             if (moviesRepository == null)
             {
-                throw new ArgumentNullException("moviesStore");
+                throw new ArgumentNullException("moviesRepository");
             }
 
             this.moviesRepository = moviesRepository;
