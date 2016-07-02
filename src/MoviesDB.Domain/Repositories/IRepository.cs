@@ -1,6 +1,7 @@
 ﻿namespace MoviesDB.Domain.Repositories
 {
     using System.Collections.Generic;
+
     using MoviesDB.Domain.Models;
 
     public interface IRepository<T, Key> where T : BaseEntity<Key>

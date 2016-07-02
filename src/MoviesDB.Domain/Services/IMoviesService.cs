@@ -1,7 +1,7 @@
-﻿using MoviesDB.Domain.Models;
-
-namespace MoviesDB.Domain.Services
+﻿namespace MoviesDB.Domain.Services
 {
+    using MoviesDB.Domain.Models;
+
     public interface IMoviesService
     {
         Movie Add(Movie movie);

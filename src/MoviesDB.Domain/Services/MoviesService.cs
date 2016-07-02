@@ -1,6 +1,7 @@
 ﻿namespace MoviesDB.Domain.Services
 {
     using System;
+
     using MoviesDB.Domain.Models;
     using MoviesDB.Domain.Repositories;
     using Newtonsoft.Json;
