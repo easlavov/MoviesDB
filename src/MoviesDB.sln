@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesDB.DataAccessLayer", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesDB.Web", "MoviesDB.Web\MoviesDB.Web.csproj", "{88C619EB-29E3-460C-818E-7CEB24A0D8B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesDB.Services", "MoviesDB.Services\MoviesDB.Services.csproj", "{63D9C820-C0C7-4AA2-95A7-47F9EF77DC03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesDB.Domain", "MoviesDB.Domain\MoviesDB.Domain.csproj", "{F8E5079D-778D-4D49-98AB-C562D5746B07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesDB.Entities", "MoviesDB.Entities\MoviesDB.Entities.csproj", "{82E63FC0-FB6D-489D-AF52-F76956DBDDDA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8B5FEF5C-E15B-4B71-8904-929657316CD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesDB.Domain.Tests", "MoviesDB.Domain.Tests\MoviesDB.Domain.Tests.csproj", "{A9A0853C-7CEB-4E0F-8433-0A458FFBA0D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,16 +27,19 @@ Global
 		{88C619EB-29E3-460C-818E-7CEB24A0D8B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88C619EB-29E3-460C-818E-7CEB24A0D8B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88C619EB-29E3-460C-818E-7CEB24A0D8B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{63D9C820-C0C7-4AA2-95A7-47F9EF77DC03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63D9C820-C0C7-4AA2-95A7-47F9EF77DC03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63D9C820-C0C7-4AA2-95A7-47F9EF77DC03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63D9C820-C0C7-4AA2-95A7-47F9EF77DC03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{82E63FC0-FB6D-489D-AF52-F76956DBDDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82E63FC0-FB6D-489D-AF52-F76956DBDDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82E63FC0-FB6D-489D-AF52-F76956DBDDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82E63FC0-FB6D-489D-AF52-F76956DBDDDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8E5079D-778D-4D49-98AB-C562D5746B07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8E5079D-778D-4D49-98AB-C562D5746B07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8E5079D-778D-4D49-98AB-C562D5746B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8E5079D-778D-4D49-98AB-C562D5746B07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9A0853C-7CEB-4E0F-8433-0A458FFBA0D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A0853C-7CEB-4E0F-8433-0A458FFBA0D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9A0853C-7CEB-4E0F-8433-0A458FFBA0D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9A0853C-7CEB-4E0F-8433-0A458FFBA0D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A9A0853C-7CEB-4E0F-8433-0A458FFBA0D0} = {8B5FEF5C-E15B-4B71-8904-929657316CD1}
 	EndGlobalSection
 EndGlobal
