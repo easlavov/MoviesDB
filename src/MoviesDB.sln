@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesDB.DataAccessLayer", "MoviesDB.DataAccessLayer\MoviesDB.DataAccessLayer.csproj", "{A30BBD93-6895-4D2A-AD0C-1B596EF03C4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesDB.Web", "MoviesDB.Web\MoviesDB.Web.csproj", "{88C619EB-29E3-460C-818E-7CEB24A0D8B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesDB.Services", "MoviesDB.Services\MoviesDB.Services.csproj", "{63D9C820-C0C7-4AA2-95A7-47F9EF77DC03}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A30BBD93-6895-4D2A-AD0C-1B596EF03C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A30BBD93-6895-4D2A-AD0C-1B596EF03C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A30BBD93-6895-4D2A-AD0C-1B596EF03C4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A30BBD93-6895-4D2A-AD0C-1B596EF03C4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88C619EB-29E3-460C-818E-7CEB24A0D8B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88C619EB-29E3-460C-818E-7CEB24A0D8B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88C619EB-29E3-460C-818E-7CEB24A0D8B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88C619EB-29E3-460C-818E-7CEB24A0D8B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63D9C820-C0C7-4AA2-95A7-47F9EF77DC03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D9C820-C0C7-4AA2-95A7-47F9EF77DC03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D9C820-C0C7-4AA2-95A7-47F9EF77DC03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63D9C820-C0C7-4AA2-95A7-47F9EF77DC03}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
