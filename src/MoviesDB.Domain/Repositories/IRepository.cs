@@ -2,17 +2,15 @@
 {
     using System.Collections.Generic;
 
-    using MoviesDB.Domain.Models;
-
-    public interface IRepository<T, Key> where T : BaseEntity<Key>
+    public interface IRepository<T, Key>
     {
-        T Add(T entity);
+        void Add(T entity);
 
-        T Update(T entity);
+        void Update(T entity);
 
         void Delete(Key id);
 
-        T GetById(Key key);
+        T GetById(Key id);
 
         IEnumerable<T> GetAll();
     }

@@ -4,9 +4,9 @@
 
     public interface IMoviesService
     {
-        Movie Add(Movie movie);
+        void Add(Movie movie);
         
-        Movie Update(Movie movie);
+        void Update(Movie movie);
 
         Movie GetById(int id);
 

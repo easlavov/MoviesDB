@@ -29,10 +29,11 @@
         }        
 
         [TestMethod]
-        public void Add_ValidMovie_ReturnsAddedMovie()
+        public void Add_ValidMovie_AddsMovieCorrectly()
         {
             var service = this.GetService();
-            var addedMovie = service.Add(new Movie("a"));
+            service.Add(new Movie("a"));
+            var addedMovie = service.GetById(2);
             Assert.IsNotNull(addedMovie);
             Assert.AreNotEqual(0, addedMovie.Id);
         }
@@ -62,7 +63,8 @@
             var service = this.GetService();
             var movieToUpdate = service.GetById(id);
             movieToUpdate.Title = newTitle;
-            var updatedMovire = service.Update(movieToUpdate);
+            service.Update(movieToUpdate);
+            var updatedMovire = service.GetById(1);
 
             Assert.AreEqual(id, movieToUpdate.Id);
             Assert.AreEqual(newTitle, movieToUpdate.Title);
@@ -86,12 +88,11 @@
 
             var repoMock = new Mock<IRepository<Movie, int>>();
             repoMock.Setup(x => x.Add(It.IsAny<Movie>()))
-                .Returns((Movie m) => 
+                .Callback((Movie m) => 
                     {
                         m.Id = idCounter;
                         idCounter++;
                         movies.Add(m);
-                        return m;
                     });
             repoMock.Setup(x => x.Delete(It.IsAny<int>()))
                 .Callback((int id) => movies.Remove(movies.FirstOrDefault(x => x.Id == id)));

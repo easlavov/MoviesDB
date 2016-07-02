@@ -24,19 +24,19 @@
             this.moviesRepository = moviesRepository;
         }
 
-        public Movie Add(Movie movie)
+        public void Add(Movie movie)
         {
             if (movie == null)
             {
                 throw new ArgumentNullException("movie", "Movie cannot be null!");
             }
 
-            return this.moviesRepository.Add(movie);
+            this.moviesRepository.Add(movie);
         }
 
-        public Movie Update(Movie movie)
+        public void Update(Movie movie)
         {
-            return this.moviesRepository.Update(movie);
+            this.moviesRepository.Update(movie);
         }
 
         public Movie GetById(int id)
