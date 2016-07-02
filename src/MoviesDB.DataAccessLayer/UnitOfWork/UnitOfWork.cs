@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MoviesDB.DataAccessLayer.UnitOfWork
+﻿namespace MoviesDB.DataAccessLayer.UnitOfWork
 {
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDbContext context;
@@ -24,6 +21,11 @@ namespace MoviesDB.DataAccessLayer.UnitOfWork
         public IDbSet<T> GetSet<T>() where T : class
         {
             return this.context.GetSet<T>();
+        }
+
+        public DbEntityEntry<T> GetEntry<T>(T entry) where T : class
+        {
+            return context.GetEntry<T>(entry);
         }
 
         public void SaveChanges()

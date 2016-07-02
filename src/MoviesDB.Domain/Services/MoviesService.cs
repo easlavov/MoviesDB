@@ -24,14 +24,16 @@
             this.moviesRepository = moviesRepository;
         }
 
-        public void Add(Movie movie)
+        public void Add(string title, string director, DateTime? releaseDate)
         {
-            if (movie == null)
+            var newMovie = new Movie
             {
-                throw new ArgumentNullException("movie", "Movie cannot be null!");
-            }
+                Title = title,
+                Director = director,
+                ReleaseDate = releaseDate
+            };
 
-            this.moviesRepository.Add(movie);
+            this.moviesRepository.Add(newMovie);
         }
 
         public void Update(Movie movie)

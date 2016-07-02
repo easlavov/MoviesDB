@@ -1,6 +1,7 @@
 ﻿namespace MoviesDB.Domain.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     public class Movie : BaseEntity<int>
     {
@@ -9,17 +10,10 @@
 
         private string title;
         private string director;
-        private DateTime releaseDate;
-
-        /// <summary>
-        ///     Creates a new instance of the <see cref="Movie"/> class.
-        /// </summary>
-        /// <param name="title">Title. Max length is <see cref="TitleMaxLength"/>
-        public Movie(string title)
-        {
-            this.Title = title;
-        }
-
+        private DateTime? releaseDate;
+        
+        [Required]
+        [MaxLength(TitleMaxLength)]
         public string Title
         {
             get
@@ -47,6 +41,7 @@
             }
         }
 
+        [MaxLength(DirectorNameMaxLength)]
         public string Director
         {
             get
@@ -56,7 +51,7 @@
 
             set
             {
-                if (value.Length > DirectorNameMaxLength)
+                if (value != null && value.Length > DirectorNameMaxLength)
                 {
                     throw new ArgumentOutOfRangeException(
                         "director",
@@ -67,7 +62,7 @@
             }
         }
 
-        public DateTime ReleaseDate
+        public DateTime? ReleaseDate
         {
             get
             {
@@ -76,7 +71,7 @@
 
             set
             {
-                if (value.Date >= DateTime.Now.Date.AddDays(1))
+                if (value.HasValue && value.Value.Date >= DateTime.Now.Date.AddDays(1))
                 {
                     throw new ArgumentOutOfRangeException(
                         "releaseDate",

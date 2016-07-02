@@ -25,14 +25,14 @@
         public void Add_MovieNull_ThrowsArgumentNullException()
         {
             var service = this.GetService();
-            service.Add(null);
+            service.Add(null, null, null);
         }        
 
         [TestMethod]
         public void Add_ValidMovie_AddsMovieCorrectly()
         {
             var service = this.GetService();
-            service.Add(new Movie("a"));
+            service.Add("Movie", null, null);
             var addedMovie = service.GetById(2);
             Assert.IsNotNull(addedMovie);
             Assert.AreNotEqual(0, addedMovie.Id);
@@ -82,7 +82,7 @@
         {
             var movies = new List<Movie>
             {
-                new Movie("Pulp Fiction") { Id = 1, Director = "Tarantino", ReleaseDate = new DateTime(1994, 09, 10) }
+                new Movie() { Id = 1, Title = "Pulp Fiction", Director = "Tarantino", ReleaseDate = new DateTime(1994, 09, 10) }
             };
             int idCounter = 2;
 

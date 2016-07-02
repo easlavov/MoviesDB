@@ -7,10 +7,10 @@
     using MoviesDB.DataAccessLayer.UnitOfWork;
     using MoviesDB.Domain.Repositories;
 
-    public abstract class GenericRepository<TDataEntity, TDomainModel, Key> : IRepository<TDomainModel, Key> where TDataEntity: class
+    public class GenericRepository<TEntity, Key> : IRepository<TEntity, Key> where TEntity : class
     {
         protected readonly IUnitOfWork unitOfWork;
-        protected readonly IDbSet<TDataEntity> dbSet;
+        protected readonly IDbSet<TEntity> dbSet;
 
         public GenericRepository(IUnitOfWork unitOfWork)
         {
@@ -20,21 +20,36 @@
             }
 
             this.unitOfWork = unitOfWork;
-            this.dbSet = this.unitOfWork.GetSet<TDataEntity>();
+            this.dbSet = this.unitOfWork.GetSet<TEntity>();
         }
 
-        public abstract void Add(TDomainModel entity);
+        public void Add(TEntity entity)
+        {
+            this.dbSet.Add(entity);
+            this.unitOfWork.SaveChanges();
+        }
 
-        public abstract void Update(TDomainModel entity);
+        public void Update(TEntity entity)
+        {
+            this.unitOfWork.GetEntry<TEntity>(entity).State = EntityState.Modified;
+            this.unitOfWork.SaveChanges();
+        }
 
         public void Delete(Key id)
         {
             var toDelete = this.dbSet.Find(id);
             this.dbSet.Remove(toDelete);
+            this.unitOfWork.SaveChanges();
         }
 
-        public abstract TDomainModel GetById(Key key);
+        public TEntity GetById(Key key)
+        {
+            return this.dbSet.Find(key);
+        }
 
-        public abstract IEnumerable<TDomainModel> GetAll();
+        public IEnumerable<TEntity> GetAll()
+        {
+            return this.dbSet;
+        }
     }
 }

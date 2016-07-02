@@ -1,31 +1,29 @@
 namespace MoviesDB.DataAccessLayer.Migrations
 {
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
+    using Domain.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MoviesDB.DataAccessLayer.MoviesDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationDataLossAllowed = false;
+            this.AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(MoviesDB.DataAccessLayer.MoviesDbContext context)
+        protected override void Seed(MoviesDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            var movieSet = context.Set<Movie>();
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            movieSet.AddOrUpdate(
+                x => new { x.Title, x.Director }, 
+                new Movie[]
+                {
+                    new Movie { Title = "Star Wars", Director = "George Lucas", ReleaseDate = new DateTime(1977, 05, 25) },
+                    new Movie { Title = "The Matrix", Director = "Wachowski Brothers", ReleaseDate = new DateTime(1999, 09, 03) },
+                    new Movie { Title = "Amadeus", Director = "Milos Forman", ReleaseDate = new DateTime(1984, 10, 31) },
+                });
         }
     }
 }
