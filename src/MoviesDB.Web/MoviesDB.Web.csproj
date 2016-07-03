@@ -149,7 +149,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\GridMvcHelper.cs" />
+    <Compile Include="Helpers\IFileHelper.cs" />
     <Compile Include="Helpers\IGridMvcHelper.cs" />
     <Compile Include="Helpers\IMoviesDBConfiguration.cs" />
     <Compile Include="Helpers\MoviesDBConfiguration.cs" />

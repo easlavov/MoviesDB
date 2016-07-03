@@ -6,12 +6,14 @@ var MOVIES = function () {
         detailsUrl = controller + 'Details',
         addMovieUrl = controller + 'Create',
         editMovieUrl = controller + 'Edit',
+        exportUrl = controller + 'Export',
 
         moviesGridSelector = '[data-gridname=MoviesGrid]',
         editMovieButtonSelector = '.edit-movie-button',
         viewMovieDetailsButtonSelector = '.view-movie-details-button',
         addMovieButtonSelector = '.add-movie-button',
         submitMovieButtonSelector = '.add-movie',
+        exportButtonSelector = '.export-button',
 
         modalSelector = '.modal',
         modalContentSelector = '.modal .modal-content',
@@ -83,7 +85,11 @@ var MOVIES = function () {
                 });
             }
         });
-    }    
+    }
+
+    function exportMovies() {
+        window.location = exportUrl;
+    }
 
     function init() {
         $('.grid-mvc').gridmvc();
@@ -94,7 +100,8 @@ var MOVIES = function () {
         $(moviesGridSelector).on('click', editMovieButtonSelector, displayEditMovieModal);
         $(moviesGridSelector).on('click', viewMovieDetailsButtonSelector, displayDetailsModal);
         $(addMovieButtonSelector).on('click', displayAddMovieModal);
-        $(modalSelector).on('click', submitMovieButtonSelector, submitMovie)
+        $(exportButtonSelector).on('click', exportMovies);
+        $(modalSelector).on('click', submitMovieButtonSelector, submitMovie);
     }
 
     return {

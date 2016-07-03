@@ -4,13 +4,15 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
+    using System.Net.Mime;
+    using System.Text;
     using System.Web.Mvc;
 
     using Domain.Models;
     using Helpers;
     using MoviesDB.Domain.Services;
     using MoviesDB.Web.ViewModels;
-
+    using Newtonsoft.Json;
     public class MoviesController : Controller
     {
         private const string GRID_PARTIAL_PATH = "_MoviesGrid";
@@ -21,27 +23,38 @@
         private readonly IMoviesService moviesService;
         private readonly IGridMvcHelper gridMvcHelper;
         private readonly IMoviesDBConfiguration config;
+        private readonly IFileHelper fileHelper;
 
-        public MoviesController(IMoviesService moviesService, IGridMvcHelper gridMvcHelper, IMoviesDBConfiguration config)
+        public MoviesController(
+            IMoviesService moviesService, 
+            IGridMvcHelper gridMvcHelper, 
+            IMoviesDBConfiguration config, 
+            IFileHelper fileHelper)
         {
             if (moviesService == null)
             {
-                throw new ArgumentNullException("moviesService");
+                throw new ArgumentNullException(nameof(moviesService));
             }
 
             if (gridMvcHelper == null)
             {
-                throw new ArgumentNullException("gridMvcHelper");
+                throw new ArgumentNullException(nameof(gridMvcHelper));
             }
 
             if (config == null)
             {
-                throw new ArgumentNullException("config");
+                throw new ArgumentNullException(nameof(config));
+            }
+
+            if (fileHelper == null)
+            {
+                throw new ArgumentNullException(nameof(fileHelper));
             }
 
             this.moviesService = moviesService;
             this.gridMvcHelper = gridMvcHelper;
             this.config = config;
+            this.fileHelper = fileHelper;
         }
 
         public ActionResult Index()
@@ -123,6 +136,19 @@
 
             this.moviesService.Update(movie);
             return new HttpStatusCodeResult(HttpStatusCode.Accepted);
+        }
+
+        [HttpGet]
+        public ActionResult Export()
+        {
+            var allMovies = this.moviesService.All();
+            var cd = new ContentDisposition
+            {
+                FileName = "Movies.js",                
+                Inline = false,
+            };
+            this.Response.AppendHeader("Content-Disposition", cd.ToString());
+            return this.fileHelper.GetJsonFile(allMovies, true);            
         }
 
         private IEnumerable<MovieViewModel> GetMoviesAsMovieViewModels()

@@ -29,6 +29,7 @@
             builder.RegisterType<MoviesService>().As<IMoviesService>().InstancePerRequest();
 
             builder.RegisterType<GridMvcHelper>().As<IGridMvcHelper>().InstancePerRequest();
+            builder.RegisterType<FileHelper>().As<IFileHelper>().InstancePerRequest();
 
             builder.RegisterType<MoviesDBConfiguration>().As<IMoviesDBConfiguration>().SingleInstance();
 

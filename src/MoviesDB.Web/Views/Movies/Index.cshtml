@@ -12,9 +12,12 @@
     Html.EnableUnobtrusiveJavaScript();
 }
 
+<h1>Movies List</h1>
+
 @Html.Action("GetGrid")
 
 <button class="btn btn-info add-movie-button">Add New</button>
+<button class="btn btn-info export-button pull-right">Export to file</button>
 
 <div class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
