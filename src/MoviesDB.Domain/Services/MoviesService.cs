@@ -1,10 +1,10 @@
 ﻿namespace MoviesDB.Domain.Services
 {
     using System;
+    using System.Collections.Generic;
 
     using MoviesDB.Domain.Models;
     using MoviesDB.Domain.Repositories;
-    using Newtonsoft.Json;
 
     public class MoviesService : IMoviesService
     {
@@ -45,12 +45,10 @@
         {
             return this.moviesRepository.GetById(id);
         }
-
-        public string ExportMoviesAsJson()
+        
+        public IEnumerable<Movie> All()
         {
-            var movies = this.moviesRepository.GetAll();
-            var json = JsonConvert.SerializeObject(movies);
-            return json;
+            return this.moviesRepository.GetAll();
         }
     }
 }

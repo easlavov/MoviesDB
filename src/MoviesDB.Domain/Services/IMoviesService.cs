@@ -1,6 +1,8 @@
 ﻿namespace MoviesDB.Domain.Services
 {
     using System;
+    using System.Collections.Generic;
+
     using MoviesDB.Domain.Models;
 
     public interface IMoviesService
@@ -11,6 +13,6 @@
 
         Movie GetById(int id);
 
-        string ExportMoviesAsJson();
+        IEnumerable<Movie> All();
     }
 }

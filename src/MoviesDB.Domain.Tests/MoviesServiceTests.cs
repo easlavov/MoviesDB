@@ -71,11 +71,11 @@
         }
 
         [TestMethod]
-        public void Export_ReturnsValidExport()
+        public void All_ReturnsAllMovies()
         {
             var service = this.GetService();
-            string moviesJson = service.ExportMoviesAsJson();
-            Assert.IsNotNull(moviesJson);
+            var movies = service.All();
+            Assert.AreEqual(1, movies.Count());
         }
 
         private IMoviesService GetService()
