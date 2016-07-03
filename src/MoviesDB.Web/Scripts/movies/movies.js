@@ -1,10 +1,13 @@
-﻿var MOVIES = function () {
-    var moviesGridName = 'MoviesGrid',
-        pagingUrl = 'Home/GridPager',
-        detailsUrl = 'Home/Details',
-        addMovieUrl = 'Home/Create',
-        editMovieUrl = 'Home/Edit',
+﻿'use strict';
+var MOVIES = function () {
+    var controller = 'Movies/',
+        moviesGridName = 'MoviesGrid',
+        pagingUrl = controller + 'GridPager',
+        detailsUrl = controller + 'Details',
+        addMovieUrl = controller + 'Create',
+        editMovieUrl = controller + 'Edit',
 
+        moviesGridSelector = '[data-gridname=MoviesGrid]',
         editMovieButtonSelector = '.edit-movie-button',
         viewMovieDetailsButtonSelector = '.view-movie-details-button',
         addMovieButtonSelector = '.add-movie-button',
@@ -12,15 +15,10 @@
 
         modalSelector = '.modal',
         modalContentSelector = '.modal .modal-content',
-        formSelector = modalSelector + ' form';
+        formSelector = modalSelector + ' form';    
 
-    $('.grid-mvc').gridmvc();
-    pageGrids[moviesGridName].ajaxify({
-        getData: pagingUrl,
-        getPagedData: pagingUrl
-    });    
-
-    function displayModal() {
+    function displayModal(html) {
+        $(modalContentSelector).html(html);
         $(modalSelector).modal();
         $('[name=ReleaseDate]').datepicker({ maxDate: new Date(), changeYear: true, dateFormat: 'dd/mm/yy', })
     }
@@ -28,46 +26,54 @@
     function displayDetailsModal() {
         var movieId = $(this).attr('data-id');
         $.get(detailsUrl, { id: movieId }, function (html) {
-            $(modalContentSelector).html(html);
-            displayModal();
+            displayModal(html);
         });
     }
 
     function displayAddMovieModal() {
-        $.get(addMovieUrl, function (html) {
-            $(modalContentSelector).html(html);
-            displayModal();
+        $.get(addMovieUrl, function (html) {            
+            displayModal(html);
         });
     }
 
     function displayEditMovieModal() {
         var id = $(this).attr('data-id');
-        $.get(editMovieUrl, { id : id }, function (html) {
-            $(modalContentSelector).html(html);
-            displayModal();
+        $.get(editMovieUrl, { id: id }, function (html) {
+            displayModal(html);
         });
+    }
+
+    function extractFormData() {
+        var id = $('[name=Id]').val();
+        var title = $('[name=Title]').val();
+        var director = $('[name=Director]').val();
+        var releaseDate = $('[name=ReleaseDate]').val();
+        return {
+            id: id,
+            title: title,
+            director: director,
+            releaseDate: releaseDate
+        }
+    }
+
+    function getUrlBasedOnAction(action) {
+        if (action == 'add') {
+            return addMovieUrl;
+        } else if (action == 'edit') {
+            return editMovieUrl;
+        }
     }
 
     function submitMovie() {
         var action = $(this).attr('data-action');
-        var url;
-        if (action == 'add') {
-            url = addMovieUrl;
-        } else if (action == 'edit') {
-            url = editMovieUrl;
-        } else {
-            return;
-        }
-
+        var url = getUrlBasedOnAction(action);
         $(formSelector).submit(function (evt) {
             evt.preventDefault();
             var $form = $(this);
+            var data;
             if ($form.valid()) {
-                var id = $('[name=Id]').val();
-                var title = $('[name=Title]').val();
-                var director = $('[name=Director]').val();
-                var releaseDate = $('[name=ReleaseDate]').val();
-                $.post(url, { id : id, title: title, director: director, releaseDate: releaseDate }, function (response, status, xhr) {
+                data = extractFormData();
+                $.post(url, data, function (response, status, xhr) {
                     if (xhr.status != 201 && xhr.status != 202) {
                         $(modalContentSelector).html(response);
                     } else {
@@ -79,9 +85,20 @@
         });
     }    
 
-    $('[data-gridname=MoviesGrid]').on('click', editMovieButtonSelector, displayEditMovieModal);
-    $('[data-gridname=MoviesGrid]').on('click', viewMovieDetailsButtonSelector, displayDetailsModal);
-    $(addMovieButtonSelector).on('click', displayAddMovieModal);
+    function init() {
+        $('.grid-mvc').gridmvc();
+        pageGrids[moviesGridName].ajaxify({
+            getData: pagingUrl,
+            getPagedData: pagingUrl
+        });
+        $(moviesGridSelector).on('click', editMovieButtonSelector, displayEditMovieModal);
+        $(moviesGridSelector).on('click', viewMovieDetailsButtonSelector, displayDetailsModal);
+        $(addMovieButtonSelector).on('click', displayAddMovieModal);
+        $(modalSelector).on('click', submitMovieButtonSelector, submitMovie)
+    }
 
-    $(modalSelector).on('click', submitMovieButtonSelector, submitMovie)
+    return {
+        init: init
+    }
 }();
+MOVIES.init();

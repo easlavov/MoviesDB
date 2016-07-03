@@ -11,18 +11,18 @@
     using MoviesDB.Domain.Services;
     using MoviesDB.Web.ViewModels;
 
-    public class HomeController : Controller
+    public class MoviesController : Controller
     {
-        private const string GRID_PARTIAL_PATH = "~/Views/Home/_MoviesGrid.cshtml";
-        private const string DETAILS_PARTIAL_PATH = "~/Views/Home/_View.cshtml";
-        private const string CREATE_PARTIAL_PATH = "~/Views/Home/_Add.cshtml";
-        private const string EDIT_PARTIAL_PATH = "~/Views/Home/_Edit.cshtml";
+        private const string GRID_PARTIAL_PATH = "_MoviesGrid";
+        private const string DETAILS_PARTIAL_PATH = "_View";
+        private const string CREATE_PARTIAL_PATH = "_Add";
+        private const string EDIT_PARTIAL_PATH = "_Edit";
 
         private readonly IMoviesService moviesService;
         private readonly IGridMvcHelper gridMvcHelper;
         private readonly IMoviesDBConfiguration config;
 
-        public HomeController(IMoviesService moviesService, IGridMvcHelper gridMvcHelper, IMoviesDBConfiguration config)
+        public MoviesController(IMoviesService moviesService, IGridMvcHelper gridMvcHelper, IMoviesDBConfiguration config)
         {
             if (moviesService == null)
             {

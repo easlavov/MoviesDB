@@ -145,7 +145,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,14 +213,14 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Shared\_AjaxGridPager.cshtml" />
-    <Content Include="Views\Home\_MoviesGrid.cshtml" />
-    <Content Include="Views\Home\_Add.cshtml" />
-    <Content Include="Views\Home\_Edit.cshtml" />
-    <Content Include="Views\Home\_View.cshtml" />
+    <Content Include="Views\Movies\_MoviesGrid.cshtml" />
+    <Content Include="Views\Movies\_Add.cshtml" />
+    <Content Include="Views\Movies\_Edit.cshtml" />
+    <Content Include="Views\Movies\_View.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Date.cshtml" />
   </ItemGroup>
