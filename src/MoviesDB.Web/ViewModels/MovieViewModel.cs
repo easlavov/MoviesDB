@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
     using Domain.Models;
 
     public class MovieViewModel
@@ -22,14 +23,17 @@
 
         [Display(Name = "Title")]
         [Required]
-        [MaxLength(Movie.TitleMaxLength)]
+        [RegularExpression(@"[^<>]*", ErrorMessage = "Html is not allowed!")]
+        [MaxLength(Movie.TitleMaxLength, ErrorMessage = "Title can't be longer than {1} characters!")]
         public string Title { get; set; }
 
         [Display(Name = "Director")]
-        [MaxLength(Movie.DirectorNameMaxLength)]
+        [RegularExpression(@"[^<>]*", ErrorMessage = "Html is not allowed!")]
+        [MaxLength(Movie.DirectorNameMaxLength, ErrorMessage = "Director can't be longer than {1} characters!")]
         public string Director { get; set; }
 
         [Display(Name = "Release Date")]
+        [DataType(DataType.Date)]
         public DateTime? ReleaseDate { get; set; }
     }
 }

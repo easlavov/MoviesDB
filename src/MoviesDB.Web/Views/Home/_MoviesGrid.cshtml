@@ -1,4 +1,6 @@
-﻿@using GridMvc.Html
+﻿@using System.Globalization
+
+@using GridMvc.Html
 @using GridMvc.Sorting
 @using MoviesDB.Web.ViewModels
 
@@ -12,6 +14,14 @@
 @helper DetailsColumn(MovieViewModel movie)
 {
     <button class="view-movie-details-button btn btn-link" data-id="@movie.Id">Details</button>
+}
+
+@helper DateColumn(DateTime? date)
+{
+    if (date.HasValue)
+    {
+        @Html.Raw(date.Value.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture))
+    }
 }
 
 @(
@@ -29,7 +39,11 @@
             cols.Add(m => m.Id);
             cols.Add(m => m.Title);
             cols.Add(m => m.Director);
-            cols.Add(m => m.ReleaseDate, "Date Released");
+            cols.Add()
+                .Titled("Release date")
+                .Encoded(false)
+                .Sanitized(false)
+                .RenderValueAs(x => this.DateColumn(x.ReleaseDate));
         })
         .WithPaging(5)
 )

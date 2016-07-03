@@ -20,20 +20,26 @@
 
         <div class="input-group">
             @Html.LabelFor(x => x.Director, new { @class = "input-group-addon" })
-            @Html.TextBoxFor(x => x.Director, new { @class = "form-control" })
+            @Html.TextBoxFor(x => x.Director, new { @class = "form-control" })            
+        </div>
+
+        <div>
             @Html.ValidationMessageFor(x => x.Director)
         </div>
 
         <div class="input-group">
             @Html.LabelFor(x => x.ReleaseDate, new { @class = "input-group-addon" })
-            @Html.TextBoxFor(x => x.ReleaseDate, new { @class = "form-control" })
+            @Html.EditorFor(x => x.ReleaseDate, new { @class = "form-control" })            
+        </div>
+
+        <div>
             @Html.ValidationMessageFor(x => x.ReleaseDate)
         </div>
 
         @Html.TextBoxFor(x => x.Id, new { hidden = "hidden" })
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-default add-movie" data-action="edit">Add</button>
+        <button type="submit" class="btn btn-default add-movie" data-action="edit">Save</button>
     </div>
 }
 

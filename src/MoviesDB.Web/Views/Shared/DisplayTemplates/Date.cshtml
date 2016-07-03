@@ -1,0 +1,11 @@
+﻿@using System.Globalization
+
+@model DateTime?
+@{
+    var value = "";
+    if (Model.HasValue)
+    {
+        value = String.Format("{0:d}", Model.Value.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture));
+    }
+}
+@Html.TextBox("", value, new { @class = "datefield form-control", type = "text", @readonly = "readonly" })

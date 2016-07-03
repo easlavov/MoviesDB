@@ -20,15 +20,21 @@
 
         <div class="input-group">
             @Html.LabelFor(x => x.Director, new { @class = "input-group-addon" })
-            @Html.TextBoxFor(x => x.Director, new { @class = "form-control" })
+            @Html.TextBoxFor(x => x.Director, new { @class = "form-control" })            
+        </div>
+
+        <div>
             @Html.ValidationMessageFor(x => x.Director)
         </div>
 
         <div class="input-group">
             @Html.LabelFor(x => x.ReleaseDate, new { @class = "input-group-addon" })
-            @Html.TextBoxFor(x => x.ReleaseDate, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.ReleaseDate)
+            @Html.EditorFor(x => x.ReleaseDate, new { @class = "form-control" })            
         </div>       
+
+        <div>
+            @Html.ValidationMessageFor(x => x.ReleaseDate)
+        </div>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-default add-movie" data-action="add">Add</button>

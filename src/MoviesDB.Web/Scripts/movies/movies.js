@@ -22,7 +22,7 @@
 
     function displayModal() {
         $(modalSelector).modal();
-        $('[name=ReleaseDate]').datepicker({ maxDate : new Date() })
+        $('[name=ReleaseDate]').datepicker({ maxDate: new Date(), changeYear: true, dateFormat: 'dd/mm/yy', })
     }
 
     function displayDetailsModal() {
