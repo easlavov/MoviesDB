@@ -29,7 +29,7 @@
             cols.Add(m => m.Id);
             cols.Add(m => m.Title);
             cols.Add(m => m.Director);
-            cols.Add(m => m.ReleaseDate);
+            cols.Add(m => m.ReleaseDate, "Date Released");
         })
         .WithPaging(5)
 )

@@ -108,7 +108,7 @@
                     movieToUpdate = m;
                 });
             repoMock.Setup(x => x.GetAll())
-                .Returns(() => { return movies.AsEnumerable(); });
+                .Returns(() => { return movies.AsQueryable(); });
             return new MoviesService(repoMock.Object);
         }
     }

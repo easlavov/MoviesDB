@@ -22,6 +22,9 @@ namespace MoviesDB.Web
             bundles.Add(new StyleBundle("~/Content/gridmvc-styles").Include(
                       "~/Content/gridmvc/ladda-themeless.min.css",
                       "~/Content/gridmvc/gridmvc.css"));
+
+            bundles.Add(new StyleBundle("~/Content/jquery-ui").Include(
+                      "~/Content/jquery-ui/jquery-ui.min.css"));
         }
 
         private static void RegisterScriptBundles(BundleCollection bundles)
@@ -49,6 +52,9 @@ namespace MoviesDB.Web
 
             bundles.Add(new ScriptBundle("~/bundles/movies").Include(
                       "~/Scripts/movies/movies.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
+                      "~/Scripts/jquery-ui/jquery-ui.min.js"));
         }
     }
 }
