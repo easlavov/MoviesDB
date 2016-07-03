@@ -33,7 +33,7 @@ namespace MoviesDB.DataAccessLayer.Migrations
             //var listMany = new List<Movie>(100000);
             //for (int i = 0; i < 100000; i++)
             //{
-            //    listMany.Add(new Movie { Title = "Star Wars", Director = "George Lucas", ReleaseDate = new DateTime(1977, 05, 25) });
+            //    listMany.Add(new Movie { Title = "Star Wars", Director = "None", ReleaseDate = new DateTime(1977, 05, 25) });
             //}
 
             //movieSet.AddRange(listMany);
