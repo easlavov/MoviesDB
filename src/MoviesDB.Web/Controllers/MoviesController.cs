@@ -5,14 +5,12 @@
     using System.Linq;
     using System.Net;
     using System.Net.Mime;
-    using System.Text;
     using System.Web.Mvc;
-
-    using Domain.Models;
     using Helpers;
+
     using MoviesDB.Domain.Services;
     using MoviesDB.Web.ViewModels;
-    using Newtonsoft.Json;
+
     public class MoviesController : Controller
     {
         private const string GRID_PARTIAL_PATH = "_MoviesGrid";
@@ -67,9 +65,7 @@
         public ActionResult GetGrid()
         {
             var items = GetMoviesAsMovieViewModels().AsQueryable().OrderBy(x => x.Id);
-            var grid = this.gridMvcHelper.GetAjaxGrid(items);
-            grid.EnablePaging = true;
-            grid.Pager.PageSize = this.config.GridPageSize;
+            var grid = this.gridMvcHelper.GetAjaxGrid(items, this.config.GridPageSize);
             return PartialView(GRID_PARTIAL_PATH, grid);
         }
 
@@ -77,9 +73,7 @@
         public ActionResult GridPager(int? page)
         {
             var items = this.GetMoviesAsMovieViewModels().AsQueryable().OrderBy(x => x.Id);
-            var grid = this.gridMvcHelper.GetAjaxGrid(items, page);
-            grid.EnablePaging = true;
-            grid.Pager.PageSize = this.config.GridPageSize;
+            var grid = this.gridMvcHelper.GetAjaxGrid(items, page, this.config.GridPageSize);
             object jsonData = this.gridMvcHelper.GetGridJsonData(grid, GRID_PARTIAL_PATH, this);
             return Json(jsonData, JsonRequestBehavior.AllowGet);
         }
@@ -126,14 +120,7 @@
                 return this.PartialView(EDIT_PARTIAL_PATH, model);
             }
 
-            var movie = new Movie
-            {
-                Id = model.Id,
-                Title = model.Title,
-                Director = model.Director,
-                ReleaseDate = model.ReleaseDate
-            };
-
+            var movie = MovieViewModel.ToMovie(model);
             this.moviesService.Update(movie);
             return new HttpStatusCodeResult(HttpStatusCode.Accepted);
         }
@@ -153,13 +140,7 @@
 
         private IEnumerable<MovieViewModel> GetMoviesAsMovieViewModels()
         {
-            return this.moviesService.All().Select(movie => new MovieViewModel
-            {
-                Id = movie.Id,
-                Title = movie.Title,
-                Director = movie.Director,
-                ReleaseDate = movie.ReleaseDate
-            });
+            return this.moviesService.All().Select(MovieViewModel.SelectFromMovie);
         }
     }
 }

@@ -2,11 +2,23 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq.Expressions;
 
     using Domain.Models;
 
     public class MovieViewModel
     {
+        public static Expression<Func<Movie, MovieViewModel>> SelectFromMovie =
+            (Movie movie) =>
+                new MovieViewModel
+                {
+                    Id = movie.Id,
+                    Title = movie.Title,
+                    Director = movie.Director,
+                    ReleaseDate = movie.ReleaseDate
+                };
+            
+
         public static MovieViewModel FromMovie(Movie movie)
         {
             return new MovieViewModel
@@ -15,6 +27,17 @@
                 Title = movie.Title,
                 Director = movie.Director,
                 ReleaseDate = movie.ReleaseDate
+            };
+        }
+
+        public static Movie ToMovie(MovieViewModel model)
+        {
+            return new Movie
+            {
+                Id = model.Id,
+                Title = model.Title,
+                Director = model.Director,
+                ReleaseDate = model.ReleaseDate
             };
         }
 
