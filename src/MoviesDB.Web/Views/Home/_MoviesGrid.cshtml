@@ -1,0 +1,17 @@
+﻿@using GridMvc.Html
+@using GridMvc.Sorting
+@using MoviesDB.Web.ViewModels
+
+@model Grid.Mvc.Ajax.GridExtensions.AjaxGrid<MovieViewModel>
+
+@(
+    Html.Grid(this.Model).Named("MoviesGrid")
+        .Columns(cols =>
+        {
+            cols.Add(m => m.Id);
+            cols.Add(m => m.Title);
+            cols.Add(m => m.Director);
+            cols.Add(m => m.ReleaseDate);
+        })
+        .WithPaging(5)
+)

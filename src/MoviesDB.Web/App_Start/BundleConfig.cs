@@ -20,6 +20,7 @@ namespace MoviesDB.Web
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/gridmvc-styles").Include(
+                      "~/Content/gridmvc/ladda-themeless.min.css",
                       "~/Content/gridmvc/gridmvc.css"));
         }
 
@@ -41,9 +42,13 @@ namespace MoviesDB.Web
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include(
+                      "~/Scripts/ladda-bootstrap/ladda.min.js",
                       "~/Scripts/URI.js",
                       "~/Scripts/gridmvc/gridmvc.min.js",
                       "~/Scripts/gridmvc/gridmvc-ext.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/movies").Include(
+                      "~/Scripts/movies/movies.js"));
         }
     }
 }
