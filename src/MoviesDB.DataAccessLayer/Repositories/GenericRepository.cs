@@ -16,7 +16,7 @@
         {
             if (unitOfWork == null)
             {
-                throw new ArgumentNullException("unitOfWork", "Unit of work cannot be null!");
+                throw new ArgumentNullException(nameof(unitOfWork), "Unit of work cannot be null!");
             }
 
             this.unitOfWork = unitOfWork;

@@ -12,7 +12,7 @@
         {
             if (context == null)
             {
-                throw new ArgumentNullException("context", "Context cannot be null!");
+                throw new ArgumentNullException(nameof(context), "Context cannot be null!");
             }
 
             this.context = context;
