@@ -143,6 +143,8 @@
     </Compile>
     <Compile Include="Helpers\GridMvcHelper.cs" />
     <Compile Include="Helpers\IGridMvcHelper.cs" />
+    <Compile Include="Helpers\IMoviesDBConfiguration.cs" />
+    <Compile Include="Helpers\MoviesDBConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MovieViewModel.cs" />
   </ItemGroup>

@@ -5,8 +5,9 @@
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
+
     using Domain.Models;
-    using GridMVCAjaxDemo.Helpers;
+    using Helpers;
     using MoviesDB.Domain.Services;
     using MoviesDB.Web.ViewModels;
 
@@ -19,8 +20,9 @@
 
         private readonly IMoviesService moviesService;
         private readonly IGridMvcHelper gridMvcHelper;
+        private readonly IMoviesDBConfiguration config;
 
-        public HomeController(IMoviesService moviesService, IGridMvcHelper gridMvcHelper)
+        public HomeController(IMoviesService moviesService, IGridMvcHelper gridMvcHelper, IMoviesDBConfiguration config)
         {
             if (moviesService == null)
             {
@@ -32,8 +34,14 @@
                 throw new ArgumentNullException("gridMvcHelper");
             }
 
+            if (config == null)
+            {
+                throw new ArgumentNullException("config");
+            }
+
             this.moviesService = moviesService;
             this.gridMvcHelper = gridMvcHelper;
+            this.config = config;
         }
 
         public ActionResult Index()
@@ -47,6 +55,8 @@
         {
             var items = GetMoviesAsMovieViewModels().AsQueryable().OrderBy(x => x.Id);
             var grid = this.gridMvcHelper.GetAjaxGrid(items);
+            grid.EnablePaging = true;
+            grid.Pager.PageSize = this.config.GridPageSize;
             return PartialView(GRID_PARTIAL_PATH, grid);
         }
 
@@ -55,6 +65,8 @@
         {
             var items = this.GetMoviesAsMovieViewModels().AsQueryable().OrderBy(x => x.Id);
             var grid = this.gridMvcHelper.GetAjaxGrid(items, page);
+            grid.EnablePaging = true;
+            grid.Pager.PageSize = this.config.GridPageSize;
             object jsonData = this.gridMvcHelper.GetGridJsonData(grid, GRID_PARTIAL_PATH, this);
             return Json(jsonData, JsonRequestBehavior.AllowGet);
         }

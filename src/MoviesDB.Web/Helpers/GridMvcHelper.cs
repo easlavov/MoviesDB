@@ -1,4 +1,4 @@
-﻿namespace GridMVCAjaxDemo.Helpers
+﻿namespace MoviesDB.Web.Helpers
 {
     using System.Linq;
     using System.Web.Mvc;

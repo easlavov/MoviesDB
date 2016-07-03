@@ -1,7 +1,7 @@
 ﻿namespace MoviesDB.Web.App_Start
 {
     using Autofac;
-    using GridMVCAjaxDemo.Helpers;
+    using Helpers;
     using MoviesDB.DataAccessLayer;
     using MoviesDB.DataAccessLayer.Repositories;
     using MoviesDB.DataAccessLayer.UnitOfWork;
@@ -22,6 +22,8 @@
             builder.RegisterType<MoviesService>().As<IMoviesService>().InstancePerRequest();
 
             builder.RegisterType<GridMvcHelper>().As<IGridMvcHelper>().InstancePerRequest();
+
+            builder.RegisterType<MoviesDBConfiguration>().As<IMoviesDBConfiguration>().SingleInstance();
 
             base.Load(builder);
         }
