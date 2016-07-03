@@ -11,9 +11,16 @@
 
     public class AutofacWebModule : Module
     {
+        private readonly string connectionString;
+
+        public AutofacWebModule(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<MoviesDbContext>().As<IDbContext>().InstancePerRequest();
+            builder.Register(c => new MoviesDbContext(this.connectionString)).As<IDbContext>().InstancePerRequest();
 
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
 

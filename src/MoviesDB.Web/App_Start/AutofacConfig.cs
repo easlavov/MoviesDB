@@ -21,7 +21,7 @@
             builder.RegisterSource(new ViewRegistrationSource());
 
             // Register our Data dependencies
-            builder.RegisterModule(new AutofacWebModule());
+            builder.RegisterModule(new AutofacWebModule("MoviesDBConnString"));
 
             var container = builder.Build();
 

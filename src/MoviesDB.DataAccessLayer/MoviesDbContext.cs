@@ -7,6 +7,11 @@
 
     public class MoviesDbContext : DbContext, IDbContext
     {
+        public MoviesDbContext(string connString)
+            : base(connString)
+        {
+        }
+
         public IDbSet<Movie> Movies { get; set; }
 
         public IDbSet<T> GetSet<T>() where T : class
