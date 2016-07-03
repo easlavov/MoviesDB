@@ -14,10 +14,11 @@ var MOVIES = function () {
         addMovieButtonSelector = '.add-movie-button',
         submitMovieButtonSelector = '.add-movie',
         exportButtonSelector = '.export-button',
+        submitButton = '[type=submit]',
 
         modalSelector = '.modal',
         modalContentSelector = '.modal .modal-content',
-        formSelector = modalSelector + ' form';    
+        formSelector = 'form';    
 
     function displayModal(html) {
         $(modalContentSelector).html(html);
@@ -66,25 +67,23 @@ var MOVIES = function () {
         }
     }
 
-    function submitMovie() {
-        var action = $(this).attr('data-action');
+    function submitMovie(evt) {        
+        evt.preventDefault();
+        var action = $(submitButton).attr('data-action');
         var url = getUrlBasedOnAction(action);
-        $(formSelector).submit(function (evt) {
-            evt.preventDefault();
-            var $form = $(this);
-            var data;
-            if ($form.valid()) {
-                data = extractFormData();
-                $.post(url, data, function (response, status, xhr) {
-                    if (xhr.status != 201 && xhr.status != 202) {
-                        $(modalContentSelector).html(response);
-                    } else {
-                        $(modalSelector).modal('hide');
-                        pageGrids.MoviesGrid.refreshFullGrid();
-                    }
-                });
-            }
-        });
+        var $form = $(this);
+        var data;
+        if ($form.valid()) {
+            data = extractFormData();
+            $.post(url, data, function (response, status, xhr) {
+                if (xhr.status != 201 && xhr.status != 202) {
+                    $(modalContentSelector).html(response);
+                } else {
+                    $(modalSelector).modal('hide');
+                    pageGrids.MoviesGrid.refreshFullGrid();
+                }
+            });
+        }
     }
 
     function exportMovies() {
@@ -101,7 +100,7 @@ var MOVIES = function () {
         $(moviesGridSelector).on('click', viewMovieDetailsButtonSelector, displayDetailsModal);
         $(addMovieButtonSelector).on('click', displayAddMovieModal);
         $(exportButtonSelector).on('click', exportMovies);
-        $(modalSelector).on('click', submitMovieButtonSelector, submitMovie);
+        $(modalSelector).on('submit', formSelector, submitMovie);
     }
 
     return {
