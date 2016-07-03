@@ -1,7 +1,9 @@
 namespace MoviesDB.DataAccessLayer.Migrations
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
+
     using Domain.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MoviesDB.DataAccessLayer.MoviesDbContext>
@@ -27,6 +29,14 @@ namespace MoviesDB.DataAccessLayer.Migrations
                     new Movie { Title = "The Godfather", Director = "Francis Ford Coppola", ReleaseDate = new DateTime(1972, 03, 24) },
                     new Movie { Title = "The Dark Knight", Director = "Christopher Nolan", ReleaseDate = new DateTime(2008, 07, 25) },
                 });
+
+            //var listMany = new List<Movie>(100000);
+            //for (int i = 0; i < 100000; i++)
+            //{
+            //    listMany.Add(new Movie { Title = "Star Wars", Director = "George Lucas", ReleaseDate = new DateTime(1977, 05, 25) });
+            //}
+
+            //movieSet.AddRange(listMany);
         }
     }
 }

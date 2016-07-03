@@ -1,8 +1,8 @@
 ﻿namespace MoviesDB.DataAccessLayer.Repositories
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
+    using System.Linq;
 
     using MoviesDB.DataAccessLayer.UnitOfWork;
     using MoviesDB.Domain.Repositories;
@@ -47,7 +47,7 @@
             return this.dbSet.Find(key);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
             return this.dbSet;
         }

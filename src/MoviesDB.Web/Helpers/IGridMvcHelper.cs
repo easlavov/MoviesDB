@@ -8,7 +8,7 @@
     public interface IGridMvcHelper
     {
         AjaxGrid<T> GetAjaxGrid<T>(IOrderedQueryable<T> items) where T : class;
-        AjaxGrid<T> GetAjaxGrid<T>(IOrderedQueryable<T> items, int? page) where T : class;
+        AjaxGrid<T> GetAjaxGrid<T>(IOrderedQueryable<T> items, int? page, int partitionSize = 10) where T : class;
         object GetGridJsonData<T>(AjaxGrid<T> grid, string gridPartialViewPath, Controller controller) where T : class;
     }
 }

@@ -4,10 +4,28 @@
 
 @model Grid.Mvc.Ajax.GridExtensions.AjaxGrid<MovieViewModel>
 
+@helper EditColumn(MovieViewModel movie)
+{
+    <button class="edit-movie-button btn btn-link" data-id="@movie.Id">Edit</button>
+}
+
+@helper DetailsColumn(MovieViewModel movie)
+{
+    <button class="view-movie-details-button btn btn-link" data-id="@movie.Id">Details</button>
+}
+
 @(
     Html.Grid(this.Model).Named("MoviesGrid")
         .Columns(cols =>
         {
+            cols.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .RenderValueAs(x => this.EditColumn(x));
+            cols.Add()
+                .Encoded(false)
+                .Sanitized(false)
+                .RenderValueAs(x => this.DetailsColumn(x));
             cols.Add(m => m.Id);
             cols.Add(m => m.Title);
             cols.Add(m => m.Director);

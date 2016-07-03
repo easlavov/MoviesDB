@@ -1,6 +1,6 @@
 ﻿namespace MoviesDB.Domain.Repositories
 {
-    using System.Collections.Generic;
+    using System.Linq;
 
     public interface IRepository<T, Key>
     {
@@ -12,6 +12,6 @@
 
         T GetById(Key id);
 
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
     }
 }

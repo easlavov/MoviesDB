@@ -1,7 +1,7 @@
 ﻿namespace MoviesDB.Domain.Services
 {
     using System;
-    using System.Collections.Generic;
+    using System.Linq;
 
     using MoviesDB.Domain.Models;
 
@@ -13,6 +13,6 @@
 
         Movie GetById(int id);
 
-        IEnumerable<Movie> All();
+        IQueryable<Movie> All();
     }
 }

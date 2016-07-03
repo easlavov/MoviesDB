@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using GridMVCAjaxDemo.Helpers;
-using MoviesDB.Domain.Models;
-using MoviesDB.Domain.Services;
-using MoviesDB.Web.ViewModels;
-
-namespace MoviesDB.Web.Controllers
+﻿namespace MoviesDB.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using GridMVCAjaxDemo.Helpers;
+    using MoviesDB.Domain.Services;
+    using MoviesDB.Web.ViewModels;
+
     public class HomeController : Controller
     {
         private const string GRID_PARTIAL_PATH = "~/Views/Home/_MoviesGrid.cshtml";
@@ -35,7 +34,6 @@ namespace MoviesDB.Web.Controllers
 
         public ActionResult Index()
         {
-
             this.moviesService.All();
             return View();
         }
