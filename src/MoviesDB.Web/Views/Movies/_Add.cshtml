@@ -8,29 +8,23 @@
 </div>
 @using (Html.BeginForm())
 {
-    <div class="modal-body">    
-        <div class="input-group">
-            @Html.LabelFor(x => x.Title, new { @class = "input-group-addon" })
-            @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })            
-        </div>
+    <div class="modal-body">
+        @Html.LabelFor(x => x.Title)
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
 
         <div>
             @Html.ValidationMessageFor(x => x.Title)
         </div>
 
-        <div class="input-group">
-            @Html.LabelFor(x => x.Director, new { @class = "input-group-addon" })
-            @Html.TextBoxFor(x => x.Director, new { @class = "form-control" })            
-        </div>
+        @Html.LabelFor(x => x.Director)
+        @Html.TextBoxFor(x => x.Director, new { @class = "form-control" })
 
         <div>
             @Html.ValidationMessageFor(x => x.Director)
         </div>
 
-        <div class="input-group">
-            @Html.LabelFor(x => x.ReleaseDate, new { @class = "input-group-addon" })
-            @Html.EditorFor(x => x.ReleaseDate, new { @class = "form-control" })            
-        </div>       
+        @Html.LabelFor(x => x.ReleaseDate)
+        @Html.EditorFor(x => x.ReleaseDate, new { @class = "form-control" })
 
         <div>
             @Html.ValidationMessageFor(x => x.ReleaseDate)

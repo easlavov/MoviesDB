@@ -5,21 +5,15 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title">View Movie</h4>
 </div>
-<div class="modal-body">
-    <div class="input-group">
-        @Html.LabelFor(x => x.Title, new { @class = "input-group-addon" })
-        @Html.TextBoxFor(x => x.Title, new { @readonly = "readonly", @class = "form-control" })
-    </div>
-
-    <div class="input-group">
-        @Html.LabelFor(x => x.Director, new { @class = "input-group-addon" })
-        @Html.TextBoxFor(x => x.Director, new { @readonly = "readonly", @class = "form-control" })
-    </div>
-
-    <div class="input-group">
-        @Html.LabelFor(x => x.ReleaseDate, new { @class = "input-group-addon" })
-        @Html.DisplayFor(x => x.ReleaseDate)
-    </div>
+<div class="modal-body">    
+        @Html.LabelFor(x => x.Title)
+        @Html.TextBoxFor(x => x.Title, new { @readonly = "readonly", @class = "form-control" })    
+    
+        @Html.LabelFor(x => x.Director)
+        @Html.TextBoxFor(x => x.Director, new { @readonly = "readonly", @class = "form-control" })    
+    
+        @Html.LabelFor(x => x.ReleaseDate)
+        @Html.DisplayFor(x => x.ReleaseDate)    
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
